@@ -26,9 +26,9 @@ public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 	    }
 
 	    @Override
-	    public DriverDetail updateDriver(DriverDetail driver) {
-	        jdbcTemplate.update(UPDATE_DRIVER_BY_Id_QUERY, driver.getFirstName(),driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getId());
-	        return driver;
+	    public int updateDriver(DriverDetail driver) {
+	        return jdbcTemplate.update(UPDATE_DRIVER_BY_Id_QUERY, driver.getFirstName(),driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getId());
+	        
 	    }
 
 	    @Override
@@ -48,7 +48,7 @@ public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 	    @Override
 	    public List<DriverDetail> allDriver() {
 	        return jdbcTemplate.query(GET_DRIVER_QUERY, (rs, rowNum) -> {
-	            return new DriverDetail(rs.getInt("id"),rs.getString("id"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
+	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
 	        });
 	    }
 }

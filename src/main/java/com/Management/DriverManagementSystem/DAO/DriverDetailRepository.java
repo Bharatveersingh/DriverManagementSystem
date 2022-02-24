@@ -11,7 +11,7 @@ public interface DriverDetailRepository {
 
     DriverDetail saveDriver(DriverDetail driver);
 
-    DriverDetail updateDriver(DriverDetail driver);
+    int updateDriver(DriverDetail driver);
 
     DriverDetail getById(int id);
 

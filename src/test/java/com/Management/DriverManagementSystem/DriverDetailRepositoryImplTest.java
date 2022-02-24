@@ -27,10 +27,10 @@ class DriverDetailRepositoryImplTest {
     @Test
     void updateDriver()
     {
-        DriverDetail driver = DriverRepo.getById(2);
+        DriverDetail driver = DriverRepo.getById(1);
         driver.setAddress("Anadra");
-        DriverDetail DriverUpdate =  DriverRepo.updateDriver(driver);
-        Assertions.assertThat(DriverUpdate.getAddress()).isEqualTo("Anadra");
+        int DriverUpdate =  DriverRepo.updateDriver(driver);
+        Assertions.assertThat(DriverUpdate).isEqualTo(1);
     }
 
     @Test

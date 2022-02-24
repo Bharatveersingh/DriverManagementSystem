@@ -7,45 +7,77 @@ import com.Management.DriverManagementSystem.Entity.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 
 
 
-@RestController
+@Controller
 public class DriverController {
 	
 	 @Autowired
 	    DriverDetailRepository DriverRepository;
+	 
+	 @RequestMapping("/welcome")
+	 public String home()
+	 {
+		 return "welcome";
+	 }
+	 
+	 @RequestMapping("Insert")
+	 public String Insert()
+	 {
+		 return "Insert";
+	 }
+	 
+	 
+	 @PostMapping(value = "/addDriver")
+		public ModelAndView insertstock(DriverDetail driver)
+	 {
+			
+			DriverRepository.saveDriver(driver);
+			return new ModelAndView("welcome");
+					
+	 }
+	 
+	 @GetMapping("/update/{id}")
+	  public ModelAndView updateDriver(@PathVariable("id") int id) 
+	 {
+	 
+		 ModelAndView mav = new ModelAndView("Update");
+		 DriverDetail driver = DriverRepository.getById(id);
+	     mav.addObject("driver",driver);
+	     return mav; 
+	  }
 
-	@PostMapping("/addDriver")
-	public DriverDetail addDriver(@RequestBody DriverDetail driver) {
+	 @PostMapping("/update/updateDriver")
+	  public ModelAndView updatestocks(DriverDetail driver)
+	  {
+		  ModelAndView mv = new ModelAndView("welcome");
+		  DriverRepository.updateDriver(driver);
+		  
+		  return mv;
+	  }
+	 
 
-		return DriverRepository.saveDriver(driver);
-
-	}
-
-	@PutMapping("/updateDriver")
-	public DriverDetail updateDriver(@RequestBody DriverDetail driver) {
-
-		return DriverRepository.updateDriver(driver);
-
-	}
-
-	@GetMapping("/getDriver/{id}")
-	public DriverDetail getDriver(@PathVariable("id") int id) {
-		return DriverRepository.getById(id);
-	}
-
-	@GetMapping("/DriversList")
-	public List<DriverDetail> getDrivers() {
-		return DriverRepository.allDriver();
-	}
-
-	@DeleteMapping("/DeleteDriver/{id}")
-	public String deleteDriver(@PathVariable("id") int id){
-		return DriverRepository.deleteById(id);
-	}
+		@GetMapping("/Drivers")
+		public String listStudents(Model model)
+		{
+			model.addAttribute("driver", DriverRepository.allDriver());
+			return "welcome";
+		}
+	
+		@GetMapping("/delete/{id}")
+		public ModelAndView deletestock(@PathVariable("id") int id)
+		{
+			
+			DriverRepository.deleteById(id);
+			ModelAndView mav = new ModelAndView("welcome");
+			return mav;
+			
+		}
 }
