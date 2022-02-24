@@ -11,44 +11,44 @@ import java.util.List;
 @Repository
 public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 
-	  private static final String INSERT_DRIVER_QUERY = "INSERT INTO drivers(FirstName,LastName,BirthDate,Address) values(?,?,?,?)";
-	    private static final String UPDATE_DRIVER_BY_NAME_QUERY = "UPDATE drivers SET lastName=?,Birthdate=?,Address=? WHERE FirstName=?";
-	    private static final String GET_DRIVER_BY_NAME_QUERY = "SELECT * FROM drivers WHERE FirstName=?";
-	    private static final String DELETE_DRIVER_BY_NAME = "DELETE FROM drivers WHERE FirstName=?";
-	    private static final String GET_DRIVER_QUERY = "SELECT * FROM drivers";
+	  private static final String INSERT_DRIVER_QUERY = "INSERT INTO driver(id ,FirstName,LastName,BirthDate,Address) values(?,?,?,?,?)";
+	    private static final String UPDATE_DRIVER_BY_NAME_QUERY = "UPDATE driver SET firstName = ?, lastName=?,Birthdate=?,Address=? WHERE id=?";
+	    private static final String GET_DRIVER_BY_NAME_QUERY = "SELECT * FROM driver WHERE id=?";
+	    private static final String DELETE_DRIVER_BY_NAME = "DELETE FROM driver WHERE id=?";
+	    private static final String GET_DRIVER_QUERY = "SELECT * FROM driver";
 	    @Autowired
 	    private JdbcTemplate jdbcTemplate;
 
 	    @Override
 	    public DriverDetail saveDriver(DriverDetail driver) {
-	        jdbcTemplate.update(INSERT_DRIVER_QUERY, driver.getFirstName(), driver.getLastName(), driver.getBirthDate(), driver.getAddress());
+	        jdbcTemplate.update(INSERT_DRIVER_QUERY,driver.getId(), driver.getFirstName(), driver.getLastName(), driver.getBirthDate(), driver.getAddress());
 	        return driver;
 	    }
 
 	    @Override
 	    public DriverDetail updateDriver(DriverDetail driver) {
-	        jdbcTemplate.update(UPDATE_DRIVER_BY_NAME_QUERY, driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getFirstName());
+	        jdbcTemplate.update(UPDATE_DRIVER_BY_NAME_QUERY, driver.getFirstName(),driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getId());
 	        return driver;
 	    }
 
 	    @Override
-	    public DriverDetail getByName(String FirstName) {
+	    public DriverDetail getById(int id) {
 	        return jdbcTemplate.queryForObject(GET_DRIVER_BY_NAME_QUERY, (rs, rowNum) -> {
 
-	            return new DriverDetail(rs.getString("FirstName"), rs.getString("LastName"), rs.getString("BirthDate"), rs.getString("Address"));
-	        },FirstName);
+	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
+	        },id);
 	    }
 
 	    @Override
-	    public String deleteByName(String FirstName) {
-	        jdbcTemplate.update(DELETE_DRIVER_BY_NAME, FirstName);
-	        return "Driver got deleted with FirstName " + FirstName;
+	    public String deleteById(int id) {
+	        jdbcTemplate.update(DELETE_DRIVER_BY_NAME, id);
+	        return "Driver got deleted with FirstName " + id;
 	    }
 
 	    @Override
 	    public List<DriverDetail> allDriver() {
 	        return jdbcTemplate.query(GET_DRIVER_QUERY, (rs, rowNum) -> {
-	            return new DriverDetail(rs.getString("FirstName"), rs.getString("LastName"), rs.getString("BirthDate"), rs.getString("Address"));
+	            return new DriverDetail(rs.getInt("id"),rs.getString("id"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
 	        });
 	    }
 }

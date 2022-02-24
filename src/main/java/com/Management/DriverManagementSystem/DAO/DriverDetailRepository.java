@@ -13,9 +13,9 @@ public interface DriverDetailRepository {
 
     DriverDetail updateDriver(DriverDetail driver);
 
-    DriverDetail getByName(String FirstName);
+    DriverDetail getById(int id);
 
-    String deleteByName(String FirstName);
+    String deleteById(int id);
 
     List<DriverDetail> allDriver();
 }

@@ -16,62 +16,38 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-@Controller
+@RestController
 public class DriverController {
 	
 	 @Autowired
 	    DriverDetailRepository DriverRepository;
-	 
-	@RequestMapping("/")
-	public String home()
-	{
-		System.out.println("here we are");
-		return "welcome";
+
+	@PostMapping("/addDriver")
+	public DriverDetail addDriver(@RequestBody DriverDetail driver) {
+
+		return DriverRepository.saveDriver(driver);
+
 	}
-	@RequestMapping("/home")
-	public String Insert()
-	{
-		System.out.println("here we are");
-		return "home";
+
+	@PutMapping("/updateDriver")
+	public DriverDetail updateDriver(@RequestBody DriverDetail driver) {
+
+		return DriverRepository.updateDriver(driver);
+
 	}
-	
-	@RequestMapping("/update")
-	public String update()
-	{
-		System.out.println("here we are");
-		return "update";
+
+	@GetMapping("/getDriver/{id}")
+	public DriverDetail getDriver(@PathVariable("id") int id) {
+		return DriverRepository.getById(id);
 	}
-	
 
-	    @PostMapping("/Driver")
-	    public String addUser( DriverDetail driver) {
-	    	System.out.println("method called");
-	     DriverRepository.saveDriver(driver);
-	     return "saved";
+	@GetMapping("/Drivers")
+	public List<DriverDetail> getDrivers() {
+		return DriverRepository.allDriver();
+	}
 
-	    }
-
-	    @PostMapping("/updateDriver")
-	    public String updateDriver( DriverDetail driver) {
-	    	System.out.println("update method called");
-	         DriverRepository.updateDriver(driver);
-	         return "home";
-
-	    }
-
-	    @GetMapping("/Driver/{FirstName}")
-	    public DriverDetail getUser(@PathVariable("FirstName") String FirstName) {
-	        return DriverRepository.getByName(FirstName);
-	    }
-
-	    @GetMapping("/Drivers")
-	    public List<DriverDetail> getUsers() {
-	        return DriverRepository.allDriver();
-	    }
-
-	    @DeleteMapping("/user/{id}")
-	    public String deleteUser(@PathVariable("FirstName") String FirstName){
-	        return DriverRepository.deleteByName(FirstName);
-	    }
-
+	@DeleteMapping("/DeleteDriver/{id}")
+	public String deleteDriver(@PathVariable("id") int id){
+		return DriverRepository.deleteById(id);
+	}
 }
