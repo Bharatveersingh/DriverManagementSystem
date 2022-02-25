@@ -68,7 +68,7 @@ aside {
 <body>
 	<header class="header">
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand" href="welcome">DriverManagement</a> 
+			<a class="navbar-brand" href="welcome">Driver Mangement</a> 
 		</nav>
 	</header>
 
@@ -82,7 +82,7 @@ aside {
 								<p class="sidebar-action-buttons">Welcome</p>
 							</div>
 							<div class="pull-left info">
-								<a type="Submit" class="sidebar-action-buttons" href="Insert">Insert Details</a>
+								<a type="Submit" class="sidebar-action-buttons" href="Insert">Insert detail</a>
 							</div>
 						</div>
 					</div>
@@ -128,6 +128,8 @@ aside {
 										name="address" class="form-control form-control-lg"
 										placeholder="Address" />
 								</div>
+
+
 
 
 								<div class="button-sbmit mt-5 text-right">

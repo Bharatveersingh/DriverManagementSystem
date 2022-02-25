@@ -54,12 +54,23 @@ aside {
 .middle {
 	margin-top: 30px;
 }
+#myTable{
+width: 100%;
+margin-bottom: 20px;
+}
+.header th{
+text-align: center;
+padding: 5px 10px;
+}
+td{
+text-align: center;
+}
 </style>
 </head>
 <body>
 	<header class="header">
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand" href="welcome">DriverManagement</a> 
+			<a class="navbar-brand" href="welcome">Driver Management</a> 
 		</nav>
 	</header>
 
@@ -73,7 +84,7 @@ aside {
 								<p class="sidebar-action-buttons">Welcome</p>
 							</div>
 							<div class="pull-left info">
-								<a type="Submit" class="sidebar-action-buttons" href="Insert">Insert Detail</a>
+								<a type="Submit" class="sidebar-action-buttons" href="Insert">Insert detail</a>
 							</div>
 						</div>
 					</div>
