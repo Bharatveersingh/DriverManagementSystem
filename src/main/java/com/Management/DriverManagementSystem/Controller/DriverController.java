@@ -28,6 +28,7 @@ public class DriverController {
 		 return "welcome";
 	 }
 	 
+	 
 	 @RequestMapping("Insert")
 	 public String Insert()
 	 {
