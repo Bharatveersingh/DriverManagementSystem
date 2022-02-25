@@ -9,14 +9,14 @@
 </head>
 <body>
 
-					<form:form action="updateDriver" method="POST" >
-							<label >ID</label> <input type="number" name="id"  />
-							<label>firstname</label> <input type="text" name="firstName" />
-							<label>LastName</label> <input type="text" name="lastName"  />
-							<label>BirthDate</label> <input type="date" name="birthDate" />
-							<label>Address</label> <input type="text" name="address"  />
-							<button class="btn btn-primary btn-lg" type="submit">Save</button>
-					</form:form>
+<form:form action="updateDriver" method="POST" >
+		<label >ID</label> <input type="number" name="id"  />
+		<label>firstName</label> <input type="text" name="firstName" />
+		<label>LastName</label> <input type="text" name="lastName"  />
+		<label>BirthDate</label> <input type="date" name="birthDate" />
+		<label>Address</label> <input type="text" name="address"  />
+		<button class="btn btn-primary btn-lg" type="submit">Save</button>
+</form:form>
 							
 </body>
 </html>
