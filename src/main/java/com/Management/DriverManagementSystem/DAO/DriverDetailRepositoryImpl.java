@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 
-	  private static final String INSERT_DRIVER_QUERY = "INSERT INTO driver(id ,FirstName,LastName,BirthDate,Address) values(?,?,?,?,?)";
-	    private static final String UPDATE_DRIVER_BY_Id_QUERY = "UPDATE driver SET firstName = ?, lastName=?,Birthdate=?,Address=? WHERE id=?";
+	  private static final String INSERT_DRIVER_QUERY = "INSERT INTO driver(id ,FirstName,LastName,BirthDate,Address,companyname) values(?,?,?,?,?,?)";
+	    private static final String UPDATE_DRIVER_BY_Id_QUERY = "UPDATE driver SET firstName = ?, lastName=?,Birthdate=?,Address=?,ComapanyName=? WHERE id=?";
 	    private static final String GET_DRIVER_BY_Id_QUERY = "SELECT * FROM driver WHERE id=?";
 	    private static final String DELETE_DRIVER_BY_NAME = "DELETE FROM driver WHERE id=?";
 	    private static final String GET_DRIVER_QUERY = "SELECT * FROM driver";
@@ -21,13 +21,13 @@ public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 
 	    @Override
 	    public DriverDetail saveDriver(DriverDetail driver) {
-	        jdbcTemplate.update(INSERT_DRIVER_QUERY,driver.getId(), driver.getFirstName(), driver.getLastName(), driver.getBirthDate(), driver.getAddress());
+	        jdbcTemplate.update(INSERT_DRIVER_QUERY,driver.getId(), driver.getFirstName(), driver.getLastName(), driver.getBirthDate(), driver.getAddress(),driver.getCompanyName());
 	        return driver;
 	    }
 
 	    @Override
 	    public int updateDriver(DriverDetail driver) {
-	        return jdbcTemplate.update(UPDATE_DRIVER_BY_Id_QUERY, driver.getFirstName(),driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getId());
+	        return jdbcTemplate.update(UPDATE_DRIVER_BY_Id_QUERY, driver.getFirstName(),driver.getLastName(),driver.getBirthDate(),driver.getAddress(), driver.getId(),driver.getCompanyName());
 	        
 	    }
 
@@ -35,7 +35,7 @@ public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 	    public DriverDetail getById(int id) {
 	        return jdbcTemplate.queryForObject(GET_DRIVER_BY_Id_QUERY, (rs, rowNum) -> {
 
-	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
+	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"),rs.getString("companyName"));
 	        },id);
 	    }
 
@@ -48,7 +48,7 @@ public class DriverDetailRepositoryImpl implements DriverDetailRepository {
 	    @Override
 	    public List<DriverDetail> allDriver() {
 	        return jdbcTemplate.query(GET_DRIVER_QUERY, (rs, rowNum) -> {
-	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"));
+	            return new DriverDetail(rs.getInt("id"),rs.getString("firstName"), rs.getString("lastName"), rs.getString("birthDate"), rs.getString("address"),rs.getString("companyName"));
 	        });
 	    }
 }

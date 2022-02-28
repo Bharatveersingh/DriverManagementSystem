@@ -14,4 +14,5 @@ public class DriverDetail {
 	private String lastName;
 	private String birthDate;
 	private String address;
+	private String companyName;
 }

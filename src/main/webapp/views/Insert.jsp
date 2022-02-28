@@ -128,6 +128,11 @@ aside {
 										name="address" class="form-control form-control-lg"
 										placeholder="Address" />
 								</div>
+								<div class="form-outline">
+									<label class="form-label">CompanyName</label> <input type="text"
+										name="companyName" class="form-control form-control-lg"
+										placeholder="companyName" />
+								</div>
 
 
 

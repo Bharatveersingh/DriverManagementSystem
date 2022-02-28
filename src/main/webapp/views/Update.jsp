@@ -129,6 +129,11 @@ aside {
 										name="address" class="form-control form-control-lg"
 										value="${driver.address}" />
 								</div>
+								<div class="form-outline">
+									<label class="form-label">CompanyName</label> <input type="text"
+										name="companyName" class="form-control form-control-lg"
+										value="${driver.companyName}" />
+								</div>
 							
 								<div class="button-sbmit mt-5 text-right">
 									<button class="btn btn-primary btn-lg" type="submit">Save</button>

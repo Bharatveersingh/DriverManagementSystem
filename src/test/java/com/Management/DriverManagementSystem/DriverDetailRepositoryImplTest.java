@@ -19,7 +19,7 @@ class DriverDetailRepositoryImplTest {
     @Test
     void saveDriver()
     {
-        DriverDetail driver = new DriverDetail(4,"ramesh","kumar","22-01-1999","Mumbai");
+        DriverDetail driver = new DriverDetail(5,"ramesh","kumar","22-01-1999","Mumbai","xyz");
         DriverDetail check = DriverRepo.saveDriver(driver);
         assertNotNull(check);
     }
@@ -27,23 +27,23 @@ class DriverDetailRepositoryImplTest {
     @Test
     void updateDriver()
     {
-        DriverDetail driver = DriverRepo.getById(1);
+        DriverDetail driver = DriverRepo.getById(5);
         driver.setAddress("Anadra");
         int DriverUpdate =  DriverRepo.updateDriver(driver);
-        Assertions.assertThat(DriverUpdate).isEqualTo(1);
+        assertNotNull(DriverUpdate);
     }
 
     @Test
     void getByName()
     {
-        DriverDetail driver = DriverRepo.getById(1);
+        DriverDetail driver = DriverRepo.getById(5);
         assertNotNull(driver);
     }
 
     @Test
     void deleteByName()
     {
-        DriverRepo.deleteById(4);
+        DriverRepo.deleteById(6);
         List<DriverDetail> list = DriverRepo.allDriver();
         Assertions.assertThat(list.size()).isGreaterThan(0);
     }

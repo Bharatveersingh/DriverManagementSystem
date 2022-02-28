@@ -104,6 +104,7 @@ text-align: center;
 								<th>LastName</th>
 								<th>Birthdate</th>
 								<th>Address</th>
+								<th>CompanyName</th>
 								
 							</tr>
 							<c:forEach items="${driver}" var="dr" >
@@ -113,6 +114,7 @@ text-align: center;
 									<td>${dr.lastName}</td>
 									<td>${dr.birthDate}</td>
 									<td>${dr.address}</td>
+									<td>${dr.companyName }</td>
 									
 									<td><a href="update/${dr.id}">Update</a> <a
 										href="delete/${dr.id}">delete</a></td>
